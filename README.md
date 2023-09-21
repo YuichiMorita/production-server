@@ -9,7 +9,7 @@ Yuichi Morita (info@reju.jp)
 ## 構築方法
 
 ```bash
-docker build --no-cache -t jokerthewild/production-server .
+docker build --no-cache --platform linux/amd64 -t jokerthewild/production-server .
 docker images
 docker run -it image
 docker exec -it コンテナ名 bash
