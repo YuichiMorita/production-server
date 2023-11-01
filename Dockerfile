@@ -6,6 +6,7 @@ ENV RUSTUP_HOME=/usr/local/rustup \
 
 RUN dnf update -y
 RUN dnf install -y gcc git wget openssl-devel postgresql-server postgresql libpq-devel fontconfig-devel
+RUN dnf group install -y "Development Tools"
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 RUN rustup update
 
