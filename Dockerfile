@@ -16,3 +16,7 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 RUN rustup update
 RUN cargo install diesel_cli --no-default-features --features postgres
 RUN touch /usr/local/cargo/config && echo -e "[net]\ngit-fetch-with-cli = true" >> /usr/local/cargo/config
+RUN wget https://storage.googleapis.com/chrome-for-testing-public/123.0.6312.86/linux64/chrome-linux64.zip
+RUN unzip chrome-linux64&&cp chrome-linux64/chrome /usr/local/bin
+RUN wget https://storage.googleapis.com/chrome-for-testing-public/123.0.6312.86/linux64/chromedriver-linux64.zip
+RUN unzip chromedriver-linux64&&cp chromedriver-linux64/chromedriver /usr/local/bin
