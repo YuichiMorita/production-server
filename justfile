@@ -1,5 +1,9 @@
 #ビルド
 build:
+    docker build --platform linux/amd64 -t jokerthewild/production-server .
+
+#クリーンビルド
+clean_build:
     docker build --no-cache --platform linux/amd64 -t jokerthewild/production-server .
 
 #ログイン

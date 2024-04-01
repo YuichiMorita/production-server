@@ -7,8 +7,8 @@ ENV RUSTUP_HOME=/usr/local/rustup \
 RUN dnf update -y
 RUN dnf install -y epel-release
 RUN dnf config-manager --set-enabled crb
-RUN dnf install -y gcc git wget openssl-devel postgresql-server postgresql libpq-devel fontconfig-devel 
-RUN dnf install -y xorg-x11-fonts-75dpi xorg-x11-fonts-Type1 
+RUN dnf install -y gcc git wget openssl-devel postgresql-server postgresql libpq-devel fontconfig-devel
+RUN dnf install -y xorg-x11-fonts-75dpi xorg-x11-fonts-Type1
 RUN wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox-0.12.6.1-2.almalinux9.x86_64.rpm
 RUN dnf install -y ./wkhtmltox-0.12.6.1-2.almalinux9.x86_64.rpm
 RUN dnf group install -y "Development Tools"
@@ -16,7 +16,5 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 RUN rustup update
 RUN cargo install diesel_cli --no-default-features --features postgres
 RUN touch /usr/local/cargo/config && echo -e "[net]\ngit-fetch-with-cli = true" >> /usr/local/cargo/config
-RUN wget https://storage.googleapis.com/chrome-for-testing-public/123.0.6312.86/linux64/chrome-linux64.zip
-RUN unzip chrome-linux64&&cp chrome-linux64/chrome /usr/local/bin
-RUN wget https://storage.googleapis.com/chrome-for-testing-public/123.0.6312.86/linux64/chromedriver-linux64.zip
-RUN unzip chromedriver-linux64&&cp chromedriver-linux64/chromedriver /usr/local/bin
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm && dnf install -y google-chrome-stable_current_x86_64.rpm
+RUN wget https://storage.googleapis.com/chrome-for-testing-public/`google-chrome --version|awk '{print $3}'`/linux64/chromedriver-linux64.zip&&unzip chromedriver-linux64.zip&&cp chromedriver-linux64/chromedriver /usr/local/bin
